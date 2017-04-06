@@ -57,8 +57,7 @@ open class LightPhotoConfig {
     public struct CloseButton {
         public static var enabled = true
         public static var size = CGSize(width: 60, height: 25)
-        public static var text = NSLocalizedString("Close", comment: "")
-        public static var image: UIImage?
+        public static var image = LightPhotoAssetManager.image("close")
 
         public static var textAttributes = [
             NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16),

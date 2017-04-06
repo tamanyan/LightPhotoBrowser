@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             LightPhotoImage(imageURL: URL(string: "https://cdn.arstechnica.net/2011/10/05/iphone4s_sample_apple-4e8c706-intro.jpg")!),
             LightPhotoImage(
                 image: UIImage(named: "photo1")!,
-                text: "Some very long lorem ipsum text. Some very long lorem ipsum text. Some very long lorem ipsum text. Some very long lorem ipsum text"
+                text: "Some very long lorem ipsum text. Some very long lorem ipsum text."
             ),
             LightPhotoImage(
                 image: UIImage(named: "photo2")!,

@@ -21,19 +21,15 @@ open class HeaderView: UIView {
     }()
 
     open fileprivate(set) lazy var closeButton: UIButton = { [unowned self] in
-        let title = NSAttributedString(
-            string: LightPhotoConfig.CloseButton.text,
-            attributes: LightPhotoConfig.CloseButton.textAttributes)
-
         let button = UIButton(type: .system)
 
         button.frame.size = LightPhotoConfig.CloseButton.size
-        button.setAttributedTitle(title, for: UIControlState())
         button.addTarget(self, action: #selector(closeButtonDidPress(_:)),
                          for: .touchUpInside)
 
         if let image = LightPhotoConfig.CloseButton.image {
-            button.setBackgroundImage(image, for: UIControlState())
+            button.setImage(image, for: UIControlState())
+            button.tintColor = .white
         }
 
         button.isHidden = !LightPhotoConfig.CloseButton.enabled
@@ -95,7 +91,7 @@ extension HeaderView: LayoutConfigurable {
 
     public func configureLayout() {
         closeButton.frame.origin = CGPoint(
-            x: bounds.width - closeButton.frame.width - 17, y: 0)
+            x: 0, y: 0)
 
         deleteButton.frame.origin = CGPoint(x: 17, y: 0)
     }
