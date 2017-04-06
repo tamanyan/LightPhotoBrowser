@@ -189,12 +189,16 @@ open class LightPhotoBrowser: UIViewController {
         goTo(currentPage, animated: false)
     }
 
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         if LightPhotoConfig.hideStatusBar {
-            UIApplication.shared.setStatusBarHidden(true, with: .fade)
+            UIApplication.shared.isStatusBarHidden = true
         }
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         if !presented {
             presented = true
@@ -202,11 +206,11 @@ open class LightPhotoBrowser: UIViewController {
         }
     }
 
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
         if LightPhotoConfig.hideStatusBar {
-            UIApplication.shared.setStatusBarHidden(statusBarHidden, with: .fade)
+            UIApplication.shared.isStatusBarHidden = false
         }
     }
 
