@@ -1,0 +1,41 @@
+//
+//  LightPhotoImage.swift
+//  LightPhotoBrowser
+//
+//  Created by svpcadmin on 4/6/17.
+//  Copyright © 2017 tamanyan. All rights reserved.
+//
+
+import UIKit
+
+open class LightPhotoImage {
+    open fileprivate(set) var image: UIImage?
+    open fileprivate(set) var imageURL: URL?
+    open fileprivate(set) var videoURL: URL?
+    open var text: String
+
+    // MARK: - Initialization
+
+    public init(image: UIImage, text: String = "", videoURL: URL? = nil) {
+        self.image = image
+        self.text = text
+        self.videoURL = videoURL
+    }
+
+    public init(imageURL: URL, text: String = "", videoURL: URL? = nil ) {
+        self.imageURL = imageURL
+        self.text = text
+        self.videoURL = videoURL
+    }
+
+    open func addImageTo(_ imageView: UIImageView, completion: ((_ image: UIImage?) -> Void)? = nil) {
+        if let image = image {
+            imageView.image = image
+            completion?(image)
+        } else if let imageURL = imageURL {
+            LightPhotoConfig.loadImage(imageView, imageURL) { error, image in
+                completion?(image)
+            }
+        }
+    }
+}
