@@ -76,14 +76,15 @@ class PageView: UIScrollView {
     // MARK: - Configuration
 
     func configure() {
+        addSubview(activityIndicator)
         addSubview(imageView)
 
         if image.videoURL != nil {
             addSubview(playButton)
         }
 
-        addSubview(activityIndicator)
-
+        imageView.backgroundColor = .clear
+        activityIndicator.backgroundColor = .clear
         delegate = self
         isMultipleTouchEnabled = true
         minimumZoomScale = LightPhotoConfig.Zoom.minimumScale
