@@ -294,7 +294,13 @@ open class LightPhotoBrowser: UIViewController {
             ? headerView.closeButton.frame.height
             : headerView.deleteButton.frame.height
 
-        headerView.frame = CGRect(x: 0, y: 16, width: bounds.width, height: headerViewHeight)
+        if #available(iOS 11, *) {
+            headerView.frame = CGRect(x: 0, y: self.view.safeAreaInsets.top,
+                                      width: bounds.width, height: headerViewHeight)
+        } else {
+            headerView.frame = CGRect(x: 0, y: self.topLayoutGuide.length,
+                                      width: bounds.width, height: headerViewHeight)
+        }
         footerView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 45)
 
         [headerView, footerView].forEach { ($0 as AnyObject).configureLayout() }
