@@ -14,13 +14,13 @@ extension UIColor {
         var hex = string.hasPrefix("#")
             ? String(string.characters.dropFirst())
             : string
-        guard hex.characters.count == 3 || hex.characters.count == 6
+        guard hex.count == 3 || hex.count == 6
             else {
                 self.init(white: 1.0, alpha: 0.0)
                 return
         }
-        if hex.characters.count == 3 {
-            for (index, char) in hex.characters.enumerated() {
+        if hex.count == 3 {
+            for (index, char) in hex.enumerated() {
                 hex.insert(char, at: hex.index(hex.startIndex, offsetBy: index * 2))
             }
         }
@@ -95,9 +95,9 @@ public extension UIColor {
         let threshold: CGFloat = 0.25
         var result = false
 
-        if fabs(bg[0] - fg[0]) > threshold || fabs(bg[1] - fg[1]) > threshold || fabs(bg[2] - fg[2]) > threshold {
-            if fabs(bg[0] - bg[1]) < 0.03 && fabs(bg[0] - bg[2]) < 0.03 {
-                if fabs(fg[0] - fg[1]) < 0.03 && fabs(fg[0] - fg[2]) < 0.03 {
+        if abs(bg[0] - fg[0]) > threshold || abs(bg[1] - fg[1]) > threshold || abs(bg[2] - fg[2]) > threshold {
+            if abs(bg[0] - bg[1]) < 0.03 && abs(bg[0] - bg[2]) < 0.03 {
+                if abs(fg[0] - fg[1]) < 0.03 && abs(fg[0] - fg[2]) < 0.03 {
                     result = false
                 }
             }

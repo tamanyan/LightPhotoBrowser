@@ -52,7 +52,7 @@ class LightPhotoTransition: UIPercentDrivenInteractiveTransition {
 
     // MARK: - Pan gesture recognizer
 
-    func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+    @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: scrollView)
         let percentage = abs(translation.y) / UIScreen.main.bounds.height / 1.5
         let velocity = gesture.velocity(in: scrollView)
@@ -178,7 +178,7 @@ extension LightPhotoTransition: UIGestureRecognizerDelegate {
 
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translation(in: gestureRecognizer.view)
-            if fabs(translation.x) < fabs(translation.y) {
+            if abs(translation.x) < abs(translation.y) {
                 result = true
             }
         }
