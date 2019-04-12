@@ -18,7 +18,7 @@ class LoadingIndicator: UIView {
         alpha = 0
 
         indicator = UIActivityIndicatorView()
-        indicator.activityIndicatorViewStyle = .white
+        indicator.style = .white
         indicator.startAnimating()
 
         addSubview(indicator)

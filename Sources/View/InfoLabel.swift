@@ -61,12 +61,12 @@ open class InfoLabel: UILabel {
         return string.boundingRect(
             with: CGSize(width: bounds.size.width, height: CGFloat.greatestFiniteMagnitude),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: [NSFontAttributeName : font],
+            attributes: [NSAttributedString.Key.font : font],
             context: nil).height
     }
 
     fileprivate func numberOfLines(_ string: String) -> Int {
-        let lineHeight = "A".size(attributes: [NSFontAttributeName: font]).height
+        let lineHeight = "A".size(withAttributes: [NSAttributedString.Key.font: font]).height
         let totalHeight = heightForString(string)
 
         return Int(totalHeight / lineHeight)

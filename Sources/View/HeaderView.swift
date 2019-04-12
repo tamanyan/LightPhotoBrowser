@@ -28,7 +28,7 @@ open class HeaderView: UIView {
                          for: .touchUpInside)
 
         if let image = LightPhotoConfig.CloseButton.image {
-            button.setImage(image, for: UIControlState())
+            button.setImage(image, for: UIControl.State())
             button.tintColor = .white
         }
 
@@ -50,7 +50,7 @@ open class HeaderView: UIView {
                          for: .touchUpInside)
 
         if let image = LightPhotoConfig.DeleteButton.image {
-            button.setBackgroundImage(image, for: UIControlState())
+            button.setBackgroundImage(image, for: UIControl.State())
         }
 
         button.isHidden = !LightPhotoConfig.DeleteButton.enabled
@@ -76,11 +76,11 @@ open class HeaderView: UIView {
 
     // MARK: - Actions
 
-    func deleteButtonDidPress(_ button: UIButton) {
+    @objc func deleteButtonDidPress(_ button: UIButton) {
         delegate?.headerView(self, didPressDeleteButton: button)
     }
 
-    func closeButtonDidPress(_ button: UIButton) {
+    @objc func closeButtonDidPress(_ button: UIButton) {
         delegate?.headerView(self, didPressCloseButton: button)
     }
 }
@@ -95,4 +95,10 @@ extension HeaderView: LayoutConfigurable {
 
         deleteButton.frame.origin = CGPoint(x: 17, y: 0)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

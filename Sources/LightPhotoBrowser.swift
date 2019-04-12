@@ -30,7 +30,7 @@ open class LightPhotoBrowser: UIViewController {
         scrollView.delegate = self
         scrollView.isUserInteractionEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.decelerationRate = UIScrollViewDecelerationRateFast
+        scrollView.decelerationRate = UIScrollView.DecelerationRate.fast
 
         return scrollView
         }()
@@ -266,7 +266,7 @@ open class LightPhotoBrowser: UIViewController {
 
     // MARK: - Actions
 
-    func overlayViewDidTap(_ tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc func overlayViewDidTap(_ tapGestureRecognizer: UITapGestureRecognizer) {
         footerView.expand(false)
     }
 
@@ -313,7 +313,7 @@ open class LightPhotoBrowser: UIViewController {
 
     fileprivate func loadDynamicBackground(_ image: UIImage) {
         backgroundView.image = image
-        backgroundView.layer.add(CATransition(), forKey: kCATransitionFade)
+        backgroundView.layer.add(CATransition(), forKey: convertFromCATransitionType(CATransitionType.fade))
     }
 
     func toggleControls(pageView: PageView?, visible: Bool, duration: TimeInterval = 0.1, delay: TimeInterval = 0) {
@@ -437,3 +437,8 @@ extension LightPhotoBrowser: FooterViewDelegate {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCATransitionType(_ input: CATransitionType) -> String {
+	return input.rawValue
+}

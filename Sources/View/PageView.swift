@@ -28,7 +28,7 @@ class PageView: UIScrollView {
     lazy var playButton: UIButton = {
         let button = UIButton(type: .custom)
         button.frame.size = CGSize(width: 60, height: 60)
-        button.setBackgroundImage(LightPhotoAssetManager.image("play"), for: UIControlState())
+        button.setBackgroundImage(LightPhotoAssetManager.image("play"), for: UIControl.State())
         button.addTarget(self, action: #selector(playButtonTouched(_:)), for: .touchUpInside)
 
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -105,7 +105,7 @@ class PageView: UIScrollView {
 
     // MARK: - Recognizers
 
-    func scrollViewDoubleTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func scrollViewDoubleTapped(_ recognizer: UITapGestureRecognizer) {
         let pointInView = recognizer.location(in: imageView)
         let newZoomScale = zoomScale > minimumZoomScale
             ? minimumZoomScale
@@ -121,7 +121,7 @@ class PageView: UIScrollView {
         zoom(to: rectToZoomTo, animated: true)
     }
 
-    func viewTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func viewTapped(_ recognizer: UITapGestureRecognizer) {
         pageViewDelegate?.pageViewDidTouch(self)
     }
 
@@ -177,7 +177,7 @@ class PageView: UIScrollView {
 
     // MARK: - Action
 
-    func playButtonTouched(_ button: UIButton) {
+    @objc func playButtonTouched(_ button: UIButton) {
         guard let videoURL = image.videoURL else { return }
 
         pageViewDelegate?.pageView(self, didTouchPlayButton: videoURL as URL)
@@ -186,7 +186,7 @@ class PageView: UIScrollView {
     // MARK: - Controls
 
     func makeActivityIndicator() -> UIActivityIndicatorView {
-        let view = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let view = UIActivityIndicatorView(style: .white)
         LightPhotoConfig.LoadingIndicator.configure?(view)
         view.startAnimating()
 
